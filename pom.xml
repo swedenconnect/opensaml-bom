@@ -7,7 +7,7 @@
   <groupId>se.swedenconnect.opensaml</groupId>
   <artifactId>opensaml-bom</artifactId>
   <packaging>pom</packaging>
-  <version>3.4.3.R1</version>
+  <version>3.4.3.R2-SNAPSHOT</version>
 
   <name>Sweden Connect :: OpenSAML BOM</name>
   <description>Maven BOM for OpenSAML 3.X</description>
@@ -86,9 +86,13 @@
         have vulnerabilities or include too old versions.
        -->
 
-      <!-- org.bouncycastle:bcprov-jdk15on@1.59 Explict dependency to org.bouncycastle:bcprov-jdk15on. 
-        OpenSAML 3.4.3 uses 1.59 which has been reported to have vulnerabilities https://app.snyk.io/vuln/SNYK-JAVA-ORGBOUNCYCASTLE-32412 
-        and https://app.snyk.io/vuln/SNYK-JAVA-ORGBOUNCYCASTLE-32369. -->
+      <!-- 
+        org.bouncycastle:bcprov-jdk15on@1.59 
+        Explict dependency to org.bouncycastle:bcprov-jdk15on. 
+        OpenSAML 3.4.3 uses 1.59 which has been reported to have vulnerabilities 
+        https://app.snyk.io/vuln/SNYK-JAVA-ORGBOUNCYCASTLE-32412 
+        and https://app.snyk.io/vuln/SNYK-JAVA-ORGBOUNCYCASTLE-32369. 
+      -->
       <dependency>
         <groupId>org.bouncycastle</groupId>
         <artifactId>bcprov-jdk15on</artifactId>
@@ -97,7 +101,10 @@
         <type>jar</type>
       </dependency>
 
-      <!-- dom4j:dom4j@1.6.1 - https://snyk.io/vuln/SNYK-JAVA-DOM4J-174153 -->
+      <!-- 
+        dom4j:dom4j@1.6.1
+        https://snyk.io/vuln/SNYK-JAVA-DOM4J-174153 
+      -->
       <dependency>
         <groupId>org.dom4j</groupId>
         <artifactId>dom4j</artifactId>
@@ -106,7 +113,10 @@
         <type>jar</type>
       </dependency>
 
-      <!-- com.google.guava:guava@20.0 https://snyk.io/vuln/SNYK-JAVA-COMGOOGLEGUAVA-32236 -->
+      <!-- 
+        com.google.guava:guava@20.0 
+        https://snyk.io/vuln/SNYK-JAVA-COMGOOGLEGUAVA-32236
+      -->
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
@@ -128,6 +138,15 @@
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
         <version>1.10</version>
+        <scope>compile</scope>
+        <type>jar</type>
+      </dependency>
+      
+      <!-- Some OpenSAML jars use older versions -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
         <scope>compile</scope>
         <type>jar</type>
       </dependency>
@@ -306,6 +325,14 @@
         <type>jar</type>
         <scope>compile</scope>
       </dependency>
+      
+      <dependency>
+        <groupId>net.shibboleth.utilities</groupId>
+        <artifactId>java-support</artifactId>
+        <version>${shibboleth.java-support.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>      
 
     </dependencies>
 
