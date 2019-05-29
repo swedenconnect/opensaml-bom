@@ -1,0 +1,367 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>se.swedenconnect.opensaml</groupId>
+  <artifactId>opensaml-bom</artifactId>
+  <packaging>pom</packaging>
+  <version>3.4.3.R1-SNAPSHOT</version>
+
+  <name>Sweden Connect :: OpenSAML BOM</name>
+  <description>Maven BOM for OpenSAML 3.X</description>
+  <url>https://github.com/swedenconnect/opensaml-bom</url>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:https://github.com/swedenconnect/opensaml-bom.git</connection>
+    <developerConnection>scm:https://github.com/swedenconnect/opensaml-bom.git</developerConnection>
+    <url>https://github.com/swedenconnect/opensaml-bom/tree/master</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>Martin Lindström</name>
+      <email>martin@idsec.se</email>
+      <organization>IDsec Solutions AB</organization>
+      <organizationUrl>http://www.idsec.se</organizationUrl>
+    </developer>
+  </developers>
+
+  <organization>
+    <name>Sweden Connect</name>
+    <url>https://swedenconnect.se</url>
+  </organization>
+
+  <properties>
+    <opensaml.version>3.4.3</opensaml.version>
+    <shibboleth.java-support.version>7.5.0</shibboleth.java-support.version>
+    <shibboleth.spring-extensions.version>5.4.1</shibboleth.spring-extensions.version>
+
+    <guava.version>27.0-jre</guava.version>
+    <bcprov-jdk15on.version>1.60</bcprov-jdk15on.version>
+    <commons-lang.version>2.4</commons-lang.version>
+    <joda-time.version>2.9</joda-time.version>
+    <slf4j.version>1.7.25</slf4j.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>Maven Central</name>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+    <repository>
+      <id>shibboleth</id>
+      <name>Shibboleth Maven Repo</name>
+      <url>https://build.shibboleth.net/nexus/content/repositories/releases</url>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
+  <dependencyManagement>
+
+    <dependencies>
+
+      <!-- 
+        Replacements of OpenSAML (and Shibboleth) transitive dependencies that 
+        have vulnerabilities or include too old versions.
+       -->
+
+      <!-- org.bouncycastle:bcprov-jdk15on@1.59 Explict dependency to org.bouncycastle:bcprov-jdk15on. 
+        OpenSAML 3.4.3 uses 1.59 which has been reported to have vulnerabilities https://app.snyk.io/vuln/SNYK-JAVA-ORGBOUNCYCASTLE-32412 
+        and https://app.snyk.io/vuln/SNYK-JAVA-ORGBOUNCYCASTLE-32369. -->
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk15on</artifactId>
+        <version>${bcprov-jdk15on.version}</version>
+        <scope>compile</scope>
+        <type>jar</type>
+      </dependency>
+
+      <!-- dom4j:dom4j@1.6.1 - https://snyk.io/vuln/SNYK-JAVA-DOM4J-174153 -->
+      <dependency>
+        <groupId>org.dom4j</groupId>
+        <artifactId>dom4j</artifactId>
+        <version>2.1.1</version>
+        <scope>compile</scope>
+        <type>jar</type>
+      </dependency>
+
+      <!-- com.google.guava:guava@20.0 https://snyk.io/vuln/SNYK-JAVA-COMGOOGLEGUAVA-32236 -->
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>27.0-jre</version>
+        <scope>compile</scope>
+        <type>jar</type>
+      </dependency>
+      
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>3.0.2</version>
+        <type>jar</type>
+        <scope>compile</scope>      
+      </dependency>      
+
+      <!-- Some OpenSAML jars use 1.9 -->
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>1.10</version>
+        <scope>compile</scope>
+        <type>jar</type>
+      </dependency>
+
+      <!-- To get the same version as Shibboleth 3.4.4 -->
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>4.4.8</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+      
+      <!-- OpenSAML -->
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-core</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-messaging-api</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-messaging-impl</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-profile-api</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-profile-impl</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-saml-api</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-saml-impl</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <!-- 
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+          </exclusion>
+        </exclusions>
+        -->
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-security-api</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-security-impl</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-soap-api</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-soap-impl</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <!-- 
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+          </exclusion>
+        </exclusions>
+        -->
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-storage-api</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-storage-impl</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions>
+          <!-- https://snyk.io/vuln/SNYK-JAVA-DOM4J-174153 -->
+          <exclusion>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-xacml-api</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-xacml-impl</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-xacml-saml-api</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-xacml-saml-impl</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-xmlsec-api</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opensaml</groupId>
+        <artifactId>opensaml-xmlsec-impl</artifactId>
+        <version>${opensaml.version}</version>
+        <type>jar</type>
+        <scope>compile</scope>
+      </dependency>
+
+    </dependencies>
+
+  </dependencyManagement>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.7</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+              <!-- Allows manual inspection of the staging repo before deploying 
+                it to the central repo. Use 'mvn nexus-staging:release -Prelease' to release and 
+                'mvn nexus-staging:drop' to abort. -->
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+
+    </profile>
+  </profiles>
+
+</project>
