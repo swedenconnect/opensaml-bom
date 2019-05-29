@@ -57,7 +57,17 @@ So, if you include `opensaml-storage-impl` as a dependency, you must do:
 ```
 
 #### Velocity and commons-collection
+
+The Velocity template engine jar (`org.apache.velocity:velocity:jar:1.7`) is included by `opensaml-saml-impl`. This dependency will include the `commons-collections:commons-collections:jar:3.2.1` dependency which Snyk reports has an arbitrary code execution vulnerability (<https://app.snyk.io/vuln/SNYK-JAVA-COMMONSCOLLECTIONS-30078>). It does not exist any fixes for this bug, so the OpenSAML BOM simply excludes the Velocity-dependency. If you need Velocity (for example when sending an `AuthnRequest` using OpenSAML-style), you need to include the dependency yourself.
+
+```
+<dependency>
+  <groupId>org.apache.velocity</groupId>
+  <artifactId>velocity</artifactId>
+  <version>1.7</version>
+</dependency>
+```
         
 ---
 
-Copyright &copy; 2016-2019, [Sweden Connect](https://swedenconnect.se). Licensed under version 2.0 of the [Apache License](http://www.apache.org/licenses/LICENSE-2.0).
+Copyright &copy; 2019, [Sweden Connect](https://swedenconnect.se). Licensed under version 2.0 of the [Apache License](http://www.apache.org/licenses/LICENSE-2.0).

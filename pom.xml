@@ -196,14 +196,12 @@
         <version>${opensaml.version}</version>
         <type>jar</type>
         <scope>compile</scope>
-        <!-- 
         <exclusions>
           <exclusion>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
           </exclusion>
         </exclusions>
-        -->
       </dependency>
 
       <dependency>
@@ -236,14 +234,6 @@
         <version>${opensaml.version}</version>
         <type>jar</type>
         <scope>compile</scope>
-        <!-- 
-        <exclusions>
-          <exclusion>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-          </exclusion>
-        </exclusions>
-        -->
       </dependency>
 
       <dependency>
