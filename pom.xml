@@ -7,7 +7,7 @@
   <groupId>se.swedenconnect.opensaml</groupId>
   <artifactId>opensaml-bom</artifactId>
   <packaging>pom</packaging>
-  <version>3.4.3.R3</version>
+  <version>3.4.5.R1-SNAPSHOT</version>
 
   <name>Sweden Connect :: OpenSAML BOM</name>
   <description>Maven BOM for OpenSAML 3.X</description>
@@ -42,8 +42,8 @@
   </organization>
 
   <properties>
-    <opensaml.version>3.4.3</opensaml.version>
-    <shibboleth.java-support.version>7.5.0</shibboleth.java-support.version>
+    <opensaml.version>3.4.5</opensaml.version>
+    <shibboleth.java-support.version>7.5.1</shibboleth.java-support.version>
     <shibboleth.spring-extensions.version>5.4.1</shibboleth.spring-extensions.version>
 
     <guava.version>28.1-jre</guava.version>
