@@ -7,7 +7,7 @@
   <groupId>se.swedenconnect.opensaml</groupId>
   <artifactId>opensaml-bom</artifactId>
   <packaging>pom</packaging>
-  <version>3.4.5.R1</version>
+  <version>3.4.5.2-SNAPSHOT</version>
 
   <name>Sweden Connect :: OpenSAML BOM</name>
   <description>Maven BOM for OpenSAML 3.X</description>

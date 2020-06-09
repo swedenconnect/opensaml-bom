@@ -10,7 +10,7 @@ Maven Bill of Materials (BOM) for OpenSAML
 
 The dependencies you get from OpenSAML sometimes are old and [Snyk](https://snyk.io) complains about some of them. This project contains a Maven BOM that fixes these issues.
 
-The versioning of this BOM corresponds to the OpenSAML version that it fixes (starting from 3.4.3) followed by another version which is the actual version for this BOM regarding the given OpenSAML release, for example `3.4.3.R1`.
+The versioning of this BOM corresponds to the OpenSAML version that it fixes (starting from 3.4.3) followed by another version which is the actual version for this BOM regarding the given OpenSAML release, for example `3.4.3.2`.
 
 Include the following in your POM using OpenSAML to get patched transitive dependencies:
 
@@ -70,4 +70,4 @@ The Velocity template engine jar (`org.apache.velocity:velocity:jar:1.7`) is inc
         
 ---
 
-Copyright &copy; 2019, [Sweden Connect](https://swedenconnect.se). Licensed under version 2.0 of the [Apache License](http://www.apache.org/licenses/LICENSE-2.0).
+Copyright &copy; 2019-2020, [Sweden Connect](https://swedenconnect.se). Licensed under version 2.0 of the [Apache License](http://www.apache.org/licenses/LICENSE-2.0).
