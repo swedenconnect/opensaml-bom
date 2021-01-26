@@ -7,10 +7,10 @@
   <groupId>se.swedenconnect.opensaml</groupId>
   <artifactId>opensaml-bom</artifactId>
   <packaging>pom</packaging>
-  <version>3.4.5.2-SNAPSHOT</version>
+  <version>4.0.1.R1-SNAPSHOT</version>
 
   <name>Sweden Connect :: OpenSAML BOM</name>
-  <description>Maven BOM for OpenSAML 3.X</description>
+  <description>Maven BOM for OpenSAML</description>
   <url>https://github.com/swedenconnect/opensaml-bom</url>
 
   <licenses>
@@ -42,15 +42,14 @@
   </organization>
 
   <properties>
-    <opensaml.version>3.4.5</opensaml.version>
-    <shibboleth.java-support.version>7.5.1</shibboleth.java-support.version>
-    <shibboleth.spring-extensions.version>5.4.1</shibboleth.spring-extensions.version>
+    <opensaml.version>4.0.1</opensaml.version>
+    <shibboleth.java-support.version>8.0.0</shibboleth.java-support.version>
 
     <guava.version>28.1-jre</guava.version>
     <bcprov-jdk15on.version>1.63</bcprov-jdk15on.version>
     <commons-lang.version>2.4</commons-lang.version>
     <joda-time.version>2.9</joda-time.version>
-    <slf4j.version>1.7.25</slf4j.version>
+    <slf4j.version>1.7.30</slf4j.version>
   </properties>
 
   <repositories>
@@ -93,6 +92,7 @@
         https://app.snyk.io/vuln/SNYK-JAVA-ORGBOUNCYCASTLE-32412 
         and https://app.snyk.io/vuln/SNYK-JAVA-ORGBOUNCYCASTLE-32369. 
       -->
+      <!-- 
       <dependency>
         <groupId>org.bouncycastle</groupId>
         <artifactId>bcprov-jdk15on</artifactId>
@@ -100,11 +100,13 @@
         <scope>compile</scope>
         <type>jar</type>
       </dependency>
+      -->
 
       <!-- 
         dom4j:dom4j@1.6.1
         https://snyk.io/vuln/SNYK-JAVA-DOM4J-174153 
       -->
+      <!-- 
       <dependency>
         <groupId>org.dom4j</groupId>
         <artifactId>dom4j</artifactId>
@@ -112,11 +114,13 @@
         <scope>compile</scope>
         <type>jar</type>
       </dependency>
+      -->
 
       <!-- 
         com.google.guava:guava@20.0 
         https://snyk.io/vuln/SNYK-JAVA-COMGOOGLEGUAVA-32236
       -->
+      <!-- 
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
@@ -124,23 +128,17 @@
         <scope>compile</scope>
         <type>jar</type>
       </dependency>
+      -->
       
+      <!-- 
       <dependency>
         <groupId>com.google.code.findbugs</groupId>
         <artifactId>jsr305</artifactId>
         <version>3.0.2</version>
         <type>jar</type>
         <scope>compile</scope>      
-      </dependency>      
-
-      <!-- Some OpenSAML jars use 1.9 -->
-      <dependency>
-        <groupId>commons-codec</groupId>
-        <artifactId>commons-codec</artifactId>
-        <version>1.10</version>
-        <scope>compile</scope>
-        <type>jar</type>
       </dependency>
+      -->      
       
       <!-- Some OpenSAML jars use older versions -->
       <dependency>
@@ -152,6 +150,7 @@
       </dependency>
 
       <!-- To get the same version as Shibboleth 3.4.4 -->
+      <!-- 
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpcore</artifactId>
@@ -159,6 +158,7 @@
         <type>jar</type>
         <scope>compile</scope>
       </dependency>
+      -->
       
       <!-- OpenSAML -->
       <dependency>
@@ -207,6 +207,13 @@
         <version>${opensaml.version}</version>
         <type>jar</type>
         <scope>compile</scope>
+        <exclusions>        
+          <exclusion>
+            <!-- !! -->
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
 
       <dependency>
@@ -219,6 +226,11 @@
           <exclusion>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
+          </exclusion>
+          <!-- ! -->
+          <exclusion>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -271,10 +283,12 @@
         <scope>compile</scope>
         <exclusions>
           <!-- https://snyk.io/vuln/SNYK-JAVA-DOM4J-174153 -->
+          <!-- 
           <exclusion>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
           </exclusion>
+          -->
         </exclusions>
       </dependency>
 
